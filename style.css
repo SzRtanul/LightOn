@@ -2,18 +2,18 @@
     width: 30%;
     margin: 0px auto;
 }
+.jatekter{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-width: 300px;
+    min-height: 300px;
+}
 .lampa{
     border-radius: 90px;
     width: 35px;
     height: 35px;
-    margin: auto;
     border: 1px solid black;
-}
-.jatekter{
-    display: grid;
-    grid-template-columns: repeat(3);
-    min-width: 300px;
-    min-height: 300px;
+    margin: auto;
 }
 .zoldpont{
     color: green;
@@ -35,4 +35,7 @@
 .iranyit{
     display: grid;
     grid-template-columns: repeat(1);
+}
+.center{
+    text-align: center;
 }
