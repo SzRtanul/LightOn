@@ -1,8 +1,10 @@
 let tomb = kezdettomb();
 let buttons = [];
+let nyert = false;
 
 gyokerpont();
 function gyokerpont(){
+    tomb = restart();
     document.getElementsByClassName("ujjatek")[0].addEventListener("click", function(){ restart() });
     megjelenit();
 }
@@ -19,10 +21,12 @@ function kezdettomb(){
 }
 
 function lep(x, y){
-    tomb = valt(x, y)
-    tomb = szomszedvalt(x, y);
-    console.log("--------------------------------------------")
-    megjelenit();
+   if(!nyert){
+        tomb = valt(x, y)
+        tomb = szomszedvalt(x, y);
+        console.log("--------------------------------------------")
+        megjelenit();
+   }
 }
 
 function szomszedvalt(x, y){
@@ -47,7 +51,7 @@ function tombfeltolt(){
     return tomb;
 }
 function randomlampa(){
-    //if(/*random < 2*/) tomb[/*rand*/][/*rand*/] = 1;
+    tomb[Math.floor(Math.random()*tomb.length)][Math.floor(Math.random()*tomb.length)] = 1;
     return tomb;
 }
 
@@ -60,6 +64,10 @@ function megjelenit(){
     }
     addInnerHTMLToAllClassName("jatekter", s);
     addInnerHTMLToAllClassName("zoldpont", mennyizold())
+    if(mennyisarga() == 0){
+        nyert = true;
+        addInnerHTMLToAllClassName("nyerte", "<h2>Nyert.</h2>")
+    }
 }
 
 function mennyizold(){
@@ -81,8 +89,11 @@ function mennyisarga(){
     return ossz;
 }
 function restart(){
+    addInnerHTMLToAllClassName("nyerte", "")
     tomb = tombfeltolt();
+    tomb = randomlampa()
     megjelenit();
+    nyert = false;
     return tomb;
 }
 
